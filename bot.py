@@ -81,7 +81,7 @@ app.add_handler(CommandHandler("register", register))
 app.add_handler(CommandHandler("imalive", imalive))
 
 scheduler = BackgroundScheduler()
-scheduler.add_job(lambda: check_inactivity(app), 'interval', minutes=1)
+scheduler.add_job(lambda: check_inactivity(app), 'interval', minutes=2)
 scheduler.start()
 
 app.run_polling()
