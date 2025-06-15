@@ -89,7 +89,6 @@ prompt_toolkit==3.0.50
 psutil==7.0.0
 ptyprocess==0.7.0
 pure_eval==0.2.3
-pycairo==1.25.1
 pycups==2.0.1
 pygame==2.5.2
 Pygments==2.19.1
