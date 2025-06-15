@@ -20,7 +20,6 @@ cssselect==1.2.0
 cycler==0.12.1
 debugpy==1.8.13
 decorator==5.2.1
-defer==1.0.6
 distro==1.9.0
 distro-info==1.7+build1
 executing==2.2.0
