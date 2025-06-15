@@ -48,7 +48,6 @@ kiwisolver==1.4.8
 launchpadlib==1.11.0
 lazr.restfulclient==0.14.6
 lazr.uri==1.0.6
-louis==3.29.0
 lxml==5.2.1
 lz4==4.0.2+dfsg
 markdown-it-py==3.0.0
