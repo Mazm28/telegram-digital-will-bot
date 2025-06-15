@@ -2,6 +2,10 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
 import sqlite3
 from datetime import datetime, timedelta
+import os
+import asyncio
+from telegram.ext import ApplicationBuilder
+from apscheduler.schedulers.background import BackgroundScheduler
 
 DB_FILE = 'wills.db'
 
@@ -67,21 +71,17 @@ def check_inactivity(context: ContextTypes.DEFAULT_TYPE):
     conn.commit()
     conn.close()
 
-# Main
-if __name__ == '__main__':
-    import asyncio
-    from telegram.ext import ApplicationBuilder
-    from apscheduler.schedulers.background import BackgroundScheduler
+init_db()
 
-    init_db()
+TOKEN = os.getenv("BOT_TOKEN")
+app = ApplicationBuilder().token(TOKEN).build()
 
-    app = ApplicationBuilder().token("YOUR_BOT_TOKEN").build()
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(CommandHandler("register", register))
-    app.add_handler(CommandHandler("imalive", imalive))
+app.add_handler(CommandHandler("start", start))
+app.add_handler(CommandHandler("register", register))
+app.add_handler(CommandHandler("imalive", imalive))
 
-    scheduler = BackgroundScheduler()
-    scheduler.add_job(lambda: check_inactivity(app), 'interval', days=1)
-    scheduler.start()
+scheduler = BackgroundScheduler()
+scheduler.add_job(lambda: check_inactivity(app), 'interval', days=1)
+scheduler.start()
 
-    app.run_polling()
+app.run_polling()
